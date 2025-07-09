@@ -1,6 +1,18 @@
 package models;
 
-public class Empleado {
+public class Empleado implements Comparable<Empleado> {
+    
+    @Override
+    public int compareTo(Empleado o) {
+        // TODO Auto-generated method stub
+        // Si son iguales, se puede comparar por nombre o ID
+        if (this.id != 0 && o.id != 0) {
+            return Integer.compare(id, o.id);
+        }
+
+        return this.name.compareTo(o.name);
+    }
+
     private int id;
     private String name;
     private String position;
@@ -23,8 +35,35 @@ public class Empleado {
         return position;
     }
 
+    
+
+    @Override
+    public int hashCode() {
+        name.hashCode();
+        return name.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Empleado other = (Empleado) obj;
+        if (id != other.id)
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
+
     @Override
     public String toString() {
-        return "ID: " + id + ", Name: " + name + ", Position: " + position;
+        return "ID: " + id + ", Nombre: " + name + ", Posición: " + position;
     }
 }
